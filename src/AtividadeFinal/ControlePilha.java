@@ -266,6 +266,7 @@ public class ControlePilha extends JFrame {
 		component.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
 				if (e.isPopupTrigger()) {
+                    
 					showMenu(e);
 				}
 			}
