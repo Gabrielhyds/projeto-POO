@@ -67,9 +67,9 @@ public class ControlePilha extends JFrame {
 	private TextArea txtUrgente;
 	private TextArea txtVip;
 	
-	  private Pilha[] pilhas; // Declarando o array de pilhas
-	  private double valor = 0.0;
-	  private int indiceMaiorPilha = -1;
+    private Pilha[] pilhas; // Declarando o array de pilhas
+    private double valor = 0.0;
+    private int indiceMaiorPilha = -1;
 
 	/**
 	 * Launch the application.
@@ -92,16 +92,17 @@ public class ControlePilha extends JFrame {
 	 */
 	public ControlePilha() {
 		setTitle("SISTEMA GERENCIADOR DE SENHAS");
+		
+		//INICIANDO AS PILHAS COM OS TIPOSLISTA
 		idoso = new Pilha(TipoLista.IDOSO);
 		idoso80 = new Pilha(TipoLista.IDOSO80);
 		preferencial = new Pilha(TipoLista.PREFERENCIAL);
 		normal = new Pilha(TipoLista.NORMAL);
 		vip = new Pilha(TipoLista.VIP);
 		urgente = new Pilha(TipoLista.URGENTE);
-
-		// Inicialização do array de pilhas
+	
+		//Iniciando o array de pilhas
         pilhas = new Pilha[] { normal, idoso, idoso80, preferencial, vip, urgente };
-        
         
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1049, 630);
@@ -112,49 +113,6 @@ public class ControlePilha extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnNewButton_2_1 =  new JButton("ATENDER");
-		btnNewButton_2_1.setBounds(525, 440, 146, 45);
-		contentPane.add(btnNewButton_2_1);
-		btnNewButton_2_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				  if (indiceMaiorPilha != -1) {
-			            if (pilhas[indiceMaiorPilha] != null && !pilhas[indiceMaiorPilha].estaVazia()) {
-			                String senhaAtendida = "Senha atendida: " + pilhas[indiceMaiorPilha].getTipoLista() + "_" + pilhas[indiceMaiorPilha].atender();
-			                txtPainelSenha.setText(senhaAtendida);
-			                switch (indiceMaiorPilha) {
-			                    case 0:
-			                        txtNormal.setText(normal.listar());
-			                        break;
-			                    case 1:
-			                        txtIdoso.setText(idoso.listar());
-			                        break;
-			                    case 2:
-			                        txtIdoso80.setText(idoso80.listar());
-			                        break;
-			                    case 3:
-			                        txtPreferencial.setText(preferencial.listar());
-			                        break;
-			                    case 4:
-			                        txtVip.setText(vip.listar());
-			                        break;
-			                    case 5:
-			                        txtUrgente.setText(urgente.listar());
-			                        break;
-			                    default:
-			                        // Caso o índice não corresponda a nenhuma pilha conhecida
-			                        System.out.println("Não há senhas para atender");
-			                        txtPainelSenha.setForeground(Color.BLACK);
-			                        break;
-			                }
-			            } else {
-			            	txtPainelSenha.setText("Não há senhas na fila.");
-			            	txtPainelSenha.setForeground(Color.BLACK);
-			            }
-			        }
-			    }
-		});
-		btnNewButton_2_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-
 		JList list = new JList();
 		list.setBounds(149, 74, 1, 1);
 		contentPane.add(list);
@@ -330,7 +288,7 @@ public class ControlePilha extends JFrame {
 		contentPane.add(btnNewButton_2);
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			        double maiorValor = 0;
+			      double maiorValor = 0;
 			     // Iterando sobre as pilhas
 			        for (int i = 0; i < pilhas.length; i++) {
 			            double valor = 0.0; // Resetando o valor para cada pilha
@@ -338,8 +296,7 @@ public class ControlePilha extends JFrame {
 			            // Calculando o valor da pilha de acordo com o tipo
 			            switch (pilhas[i].getTipoLista()) {
 			                case IDOSO:
-			                    valor = pilhas[i].tamanho() * 3.0; // Valor para a pilha de idosos
-			                    
+			                    valor = pilhas[i].tamanho() * 3.0; // Valor para a pilha de idoso
 			                    break;
 			                case IDOSO80:
 			                    valor = pilhas[i].tamanho() * 3.5; // Valor para a pilha de idosos acima de 80 anos
@@ -413,6 +370,65 @@ public class ControlePilha extends JFrame {
 			}
 		});
 		btnNewButton_2.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		
+		
+		JButton btnNewButton_2_1 =  new JButton("ATENDER");
+		btnNewButton_2_1.setBounds(525, 440, 146, 45);
+		contentPane.add(btnNewButton_2_1);
+		btnNewButton_2_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// Verifica se existe um índice válido de maior pilha
+				if (indiceMaiorPilha != -1) {
+				    // Verifica se a pilha no índice especificado não é nula e não está vazia
+				    if (pilhas[indiceMaiorPilha] != null && !pilhas[indiceMaiorPilha].estaVazia()) {
+				        // Constrói a string da senha atendida usando o tipo da lista e a próxima senha a ser atendida da pilha
+				        String senhaAtendida = "Senha atendida: " + pilhas[indiceMaiorPilha].getTipoLista() + "_" + pilhas[indiceMaiorPilha].atender();
+				        // Define o texto do painel de senha para exibir a senha atendida
+				        txtPainelSenha.setText(senhaAtendida);
+				        
+				        // Seleciona a ação a ser realizada com base no índice da maior pilha
+				        switch (indiceMaiorPilha) {
+				            case 0:
+				                // Atualiza o texto do painel de senhas normais
+				                txtNormal.setText(normal.listar());
+				                break;
+				            case 1:
+				                // Atualiza o texto do painel de senhas de idosos
+				                txtIdoso.setText(idoso.listar());
+				                break;
+				            case 2:
+				                // Atualiza o texto do painel de senhas de idosos acima de 80 anos
+				                txtIdoso80.setText(idoso80.listar());
+				                break;
+				            case 3:
+				                // Atualiza o texto do painel de senhas preferenciais
+				                txtPreferencial.setText(preferencial.listar());
+				                break;
+				            case 4:
+				                // Atualiza o texto do painel de senhas VIP
+				                txtVip.setText(vip.listar());
+				                break;
+				            case 5:
+				                // Atualiza o texto do painel de senhas urgentes
+				                txtUrgente.setText(urgente.listar());
+				                break;
+				            default:
+				                // Caso o índice não corresponda a nenhuma pilha conhecida, imprime uma mensagem e define a cor do texto do painel de senha
+				                System.out.println("Não há senhas para atender");
+				                txtPainelSenha.setForeground(Color.BLACK);
+				                break;
+				        }
+				    } else {
+				        // Se a pilha no índice especificado for nula ou estiver vazia, exibe mensagem que não há senhas na fila e ajusta a cor do texto
+				        txtPainelSenha.setText("Não há senhas na fila.");
+				        txtPainelSenha.setForeground(Color.BLACK);
+				    }
+				}
+			}
+		});
+		btnNewButton_2_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+
+		
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\MICRO\\Downloads\\AtvFinal (2)\\AtvFinal\\src\\Img\\imgTelaInicial.png"));
