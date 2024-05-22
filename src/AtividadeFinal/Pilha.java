@@ -14,13 +14,12 @@ public class Pilha extends EstrategiaLIFO {
         this.pilha = new LinkedList<Senha>();
 		this.tipoLista = tipo;	
 	}
-	
+
 	//metodo para retornar o tamanho da pilha
     public int tamanho() {
         return this.pilha.size();
     }
-	
-    
+
 	//metodos getter/setter do tipoLista
 	public TipoLista getTipoLista() {
 		return tipoLista;
@@ -29,7 +28,6 @@ public class Pilha extends EstrategiaLIFO {
 	public void setTipoLista(TipoLista tipoLista) {
 		this.tipoLista = tipoLista;
 	}
-
 	//metodos INSERIR - REMOVER - CHAMAR - ATENDER - LISTAR
 	@Override
 	public String inserir() {
@@ -61,9 +59,7 @@ public class Pilha extends EstrategiaLIFO {
 		 		 aux = true; // atribui a variavel aux o valor true
 		 	}
 		 	return aux; // retorna o valor da varivel aux TRUE OR FALSE
-
 	}
-	@Override
 	public String atender() { 
 	  if (!pilha.isEmpty()) { // Se a pilha não estiver vazia
 	        Senha senha = pilha.removeFirst(); // remove a primeira senha do topo da pilha
@@ -71,7 +67,7 @@ public class Pilha extends EstrategiaLIFO {
 	        return senha.retornarSenha(); // Retorna a senha atendida
 	    } else {
 	        return "Não há senhas na fila."; // se a pilha estiver vazia retorna essa string
-	    }
+		}
 	}
 	@Override
 	public String listar() { 
