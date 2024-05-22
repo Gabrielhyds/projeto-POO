@@ -31,7 +31,6 @@ public class Pilha extends EstrategiaLIFO {
 	}
 
 	//metodos INSERIR - REMOVER - CHAMAR - ATENDER - LISTAR
-	
 	@Override
 	public String inserir() {
 		 Senha senha = new Senha(); // instancia a senha
@@ -39,14 +38,12 @@ public class Pilha extends EstrategiaLIFO {
 	     pilha.addFirst(senha); // adiciona a senha gerada na pilha
 	     return pilha.toString(); // retorna a pilha em string
     }
-	
 	@Override
 	public void remover() {
 	    if (!pilha.isEmpty()) { //se a pilha for diferente de vazio
 	        pilha.removeFirst(); // remove o primeiro elemento do topo da pilha
 	    }
 	}
-
 	@Override
 	public String chamar() {
 	    if (!pilha.isEmpty()) { // se a pilha for diferente de vazio
@@ -57,7 +54,6 @@ public class Pilha extends EstrategiaLIFO {
 	        return "Não há senhas na fila."; // se a pilha estiver vazia retorna essa string
 	    }
 	}
-	
 	//metodo para ver se pilha está vazia
 	 public boolean estaVazia() {
 		 	boolean aux = false; // variavel bool iniciada em false
