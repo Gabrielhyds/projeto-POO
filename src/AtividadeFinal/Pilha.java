@@ -15,19 +15,12 @@ public class Pilha extends EstrategiaLIFO {
 		this.tipoLista = tipo;	
 	}
 	
-<<<<<<< HEAD
 	//metodo para retornar o tamanho da pilha
-=======
-
->>>>>>> 03a033967422c7638be479acbecca7b8010da30f
     public int tamanho() {
         return this.pilha.size();
     }
 	
-<<<<<<< HEAD
     
-=======
->>>>>>> 03a033967422c7638be479acbecca7b8010da30f
 	//metodos getter/setter do tipoLista
 	public TipoLista getTipoLista() {
 		return tipoLista;
@@ -49,19 +42,13 @@ public class Pilha extends EstrategiaLIFO {
 	
 	@Override
 	public void remover() {
-<<<<<<< HEAD
 	    if (!pilha.isEmpty()) { //se a pilha for diferente de vazio
 	        pilha.removeFirst(); // remove o primeiro elemento do topo da pilha
-=======
-	    if (!pilha.isEmpty()) {
-	        pilha.removeFirst(); // Remove the top element from the stack
->>>>>>> 03a033967422c7638be479acbecca7b8010da30f
 	    }
 	}
 
 	@Override
 	public String chamar() {
-<<<<<<< HEAD
 	    if (!pilha.isEmpty()) { // se a pilha for diferente de vazio
 	        Senha senha = pilha.getFirst(); // pega a primeira senha do topo da pilha
 	        senha.setChamado(); // Marca a senha como chamada usando o metodo setchamado ex: 0001*
@@ -79,19 +66,8 @@ public class Pilha extends EstrategiaLIFO {
 		 	}
 		 	return aux; // retorna o valor da varivel aux TRUE OR FALSE
 
-=======
-	    if (!pilha.isEmpty()) {
-	        Senha senha = pilha.getFirst(); // Get the next password in the stack
-	        senha.setChamado(); // Mark the password as called
-	        return senha.retornarSenha(); // Return the next password
-	    } else {
-	        return "Não há senhas na fila.";
-	    }
->>>>>>> 03a033967422c7638be479acbecca7b8010da30f
 	}
-
 	@Override
-<<<<<<< HEAD
 	public String atender() { 
 	  if (!pilha.isEmpty()) { // Se a pilha não estiver vazia
 	        Senha senha = pilha.removeFirst(); // remove a primeira senha do topo da pilha
@@ -99,15 +75,6 @@ public class Pilha extends EstrategiaLIFO {
 	        return senha.retornarSenha(); // Retorna a senha atendida
 	    } else {
 	        return "Não há senhas na fila."; // se a pilha estiver vazia retorna essa string
-=======
-	public String atender() {
-	    if (!pilha.isEmpty()) {
-	        Senha senha = pilha.removeFirst(); // Serve the next password in the stack
-	        senha.setChamado(); // Mark the password as called
-	        return senha.retornarSenha(); // Return the served password
-	    } else {
-	        return "Não há senhas na fila.";
->>>>>>> 03a033967422c7638be479acbecca7b8010da30f
 	    }
 	}
 	@Override
