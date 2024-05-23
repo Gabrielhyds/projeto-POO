@@ -49,10 +49,13 @@ import javax.swing.JScrollPane;
 
 public class ControlePilha extends JFrame {
 
+	
+	// ATRIBUTOS
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField txtPainelSenha;
-
+	
+	//ATRIBUTOS DO TIPO PILHA
 	private Pilha idoso;
 	private Pilha idoso80;
 	private Pilha preferencial;
@@ -60,6 +63,7 @@ public class ControlePilha extends JFrame {
 	private Pilha vip;
 	private Pilha urgente;
 
+	//ATRIBUTOS DO TIPO TEXTAREA
 	private TextArea txtIdoso;
 	private TextArea txtIdoso80;
 	private TextArea txtNormal;
@@ -67,7 +71,9 @@ public class ControlePilha extends JFrame {
 	private TextArea txtUrgente;
 	private TextArea txtVip;
 	
-    private Pilha[] pilhas; // Declarando o array de pilhas
+	
+	//Declarando o array de pilhas
+    private Pilha[] pilhas;
     private double valor = 0.0;
     private int indiceMaiorPilha = -1;
 
@@ -104,12 +110,13 @@ public class ControlePilha extends JFrame {
 		//Iniciando o array de pilhas
         pilhas = new Pilha[] { normal, idoso, idoso80, preferencial, vip, urgente };
         
+        
+        //iniciando o frame 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1049, 630);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(65, 105, 225));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
@@ -117,6 +124,7 @@ public class ControlePilha extends JFrame {
 		list.setBounds(149, 74, 1, 1);
 		contentPane.add(list);
 
+		// adicionando o combobox para o user escolher a fila de atendimento
 		JComboBox comboBox = new JComboBox();
 		comboBox.setModel(new DefaultComboBoxModel(new String[] { "SELECIONE", "IDOSO", "IDOSO 80+", "NORMAL", "PREFERENCIAL", "URGENTE ", "VIP" }));
 		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 19));
@@ -124,37 +132,40 @@ public class ControlePilha extends JFrame {
 		contentPane.add(comboBox);
 
 		
-
+		// botão gerar senha
 		JButton btnNewButton = new JButton("GERAR SENHA");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//declarando a variavel selection e atribuindo a ela os indices do combobox
 				int selection = comboBox.getSelectedIndex();
+				
+				//iniciando o switch case para cada indice
 				switch (selection) {
-					case 1:
-						idoso.inserir();
-						txtIdoso.setText(idoso.listar());
+					case 1: // caso seja selecionado o 1 é o idoso
+						idoso.inserir(); // inseri na pilha a senha gerada para o idoso
+						txtIdoso.setText(idoso.listar()); // lista no txtarea o idoso
+						break; // para o programa
+					case 2: // caso seja selecionado o 2 é o idoso80
+						idoso80.inserir();  // inseri na pilha a senha gerada para o idoso80
+						txtIdoso80.setText(idoso80.listar()); // lista no txtarea o idoso80
 						break;
-					case 2:
-						idoso80.inserir();
-						txtIdoso80.setText(idoso80.listar());
+					case 3: // caso seja selecionado o 3 é o normal
+						normal.inserir(); // inseri na pilha a senha gerada para o normal
+						txtNormal.setText(normal.listar()); // lista no txtarea o normal
 						break;
-					case 3:
-						normal.inserir();
-						txtNormal.setText(normal.listar());
+					case 4: // caso seja selecionado o 4 é o preferencial
+						preferencial.inserir(); // inseri na pilha a senha gerada para o preferencial
+						txtPreferencial.setText(preferencial.listar()); // lista no txtarea o preferencial
 						break;
-					case 4:
-						preferencial.inserir();
-						txtPreferencial.setText(preferencial.listar());
+					case 5: // caso seja selecionado o 5 é o urgente
+						urgente.inserir(); // inseri na pilha a senha gerada para o urgente
+						txtUrgente.setText(urgente.listar());  // lista no txtarea o urgente
 						break;
-					case 5:
-						urgente.inserir();
-						txtUrgente.setText(urgente.listar());
+					case 6: // caso seja selecionado o 6 é o vip
+						vip.inserir(); // inseri na pilha a senha gerada para o vip
+						txtVip.setText(vip.listar()); // lista no txtarea o vip
 						break;
-					case 6:
-						vip.inserir();
-						txtVip.setText(vip.listar());
-						break;
-					default:
+					default: // se não for nenhum dos casos acima então aciona essa mensagem na tela
 						JOptionPane.showMessageDialog(null, "Selecione uma opção");
 						break;
 				}
@@ -227,6 +238,7 @@ public class ControlePilha extends JFrame {
 		txtIdoso.setBounds(79, 141, 188, 100);
 		contentPane.add(txtIdoso);
 		txtIdoso.setEditable(false);
+		txtIdoso.setForeground(Color.BLUE);
 		txtIdoso.setFont(new Font("Arial",Font.BOLD,18));
 		
 		JLabel lblNewLabel_1_2_1 = new JLabel("IDOSO 80+");
@@ -238,6 +250,7 @@ public class ControlePilha extends JFrame {
 		txtIdoso80.setBounds(79, 291, 188, 100);
 		contentPane.add(txtIdoso80);
 		txtIdoso80.setEditable(false);
+		txtIdoso80.setForeground(Color.RED);
 		txtIdoso80.setFont(new Font("Arial",Font.BOLD,18));
 		
 		JLabel lblNewLabel_1_2_2 = new JLabel("NORMAL");
@@ -249,6 +262,7 @@ public class ControlePilha extends JFrame {
 		txtNormal.setBounds(79, 440, 188, 100);
 		contentPane.add(txtNormal);
 		txtNormal.setEditable(false);
+        txtNormal.setForeground(Color.GRAY);
 		txtNormal.setFont(new Font("Arial",Font.BOLD,18));
 						
 		JLabel lblNewLabel_1_2_3 = new JLabel("PREFERENCIAL");
@@ -260,6 +274,7 @@ public class ControlePilha extends JFrame {
 		txtPreferencial.setBounds(783, 141, 188, 100);
 		contentPane.add(txtPreferencial);
 		txtPreferencial.setEditable(false);
+    	txtPreferencial.setForeground(Color.MAGENTA);
 		txtPreferencial.setFont(new Font("Arial",Font.BOLD,18));
 
 		JLabel lblNewLabel_1_2_3_2 = new JLabel("URGENTE");
@@ -271,6 +286,7 @@ public class ControlePilha extends JFrame {
 		txtUrgente.setBounds(783, 291, 188, 100);
 		contentPane.add(txtUrgente);
 		txtUrgente.setEditable(false);
+		txtUrgente.setForeground(Color.GREEN);
 		txtUrgente.setFont(new Font("Arial",Font.BOLD,18));
 
 		JLabel lblNewLabel_1_2_3_2_1 = new JLabel("VIP");
@@ -282,7 +298,11 @@ public class ControlePilha extends JFrame {
 		txtVip.setBounds(786, 440, 188, 100);
 		contentPane.add(txtVip);
 		txtVip.setEditable(false);
+		txtVip.setForeground(Color.ORANGE);
 		txtVip.setFont(new Font("Arial",Font.BOLD,18));
+		
+		
+		
 		JButton btnNewButton_2 = new JButton("CHAMAR");
 		btnNewButton_2.setBounds(369, 440, 146, 45);
 		contentPane.add(btnNewButton_2);
@@ -291,8 +311,6 @@ public class ControlePilha extends JFrame {
 			      double maiorValor = 0;
 			     // Iterando sobre as pilhas
 			        for (int i = 0; i < pilhas.length; i++) {
-			            double valor = 0.0; // Resetando o valor para cada pilha
-			            
 			            // Calculando o valor da pilha de acordo com o tipo
 			            switch (pilhas[i].getTipoLista()) {
 			                case IDOSO:
@@ -334,7 +352,7 @@ public class ControlePilha extends JFrame {
 				        case 0:
 				            // A maior pilha é normal
 				        	txtNormal.setText(normal.listar());
-				            txtPainelSenha.setForeground(Color.BLACK);
+				            txtPainelSenha.setForeground(Color.PINK);
 				            break;
 				        case 1:
 				            // A maior pilha é idoso
@@ -379,13 +397,16 @@ public class ControlePilha extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				// Verifica se existe um índice válido de maior pilha
 				if (indiceMaiorPilha != -1) {
+					
 				    // Verifica se a pilha no índice especificado não é nula e não está vazia
 				    if (pilhas[indiceMaiorPilha] != null && !pilhas[indiceMaiorPilha].estaVazia()) {
+				    	
 				        // Constrói a string da senha atendida usando o tipo da lista e a próxima senha a ser atendida da pilha
 				        String senhaAtendida = "Senha atendida: " + pilhas[indiceMaiorPilha].getTipoLista() + "_" + pilhas[indiceMaiorPilha].atender();
+
 				        // Define o texto do painel de senha para exibir a senha atendida
 				        txtPainelSenha.setText(senhaAtendida);
-				        
+				        	
 				        // Seleciona a ação a ser realizada com base no índice da maior pilha
 				        switch (indiceMaiorPilha) {
 				            case 0:
@@ -415,19 +436,17 @@ public class ControlePilha extends JFrame {
 				            default:
 				                // Caso o índice não corresponda a nenhuma pilha conhecida, imprime uma mensagem e define a cor do texto do painel de senha
 				                System.out.println("Não há senhas para atender");
-				                txtPainelSenha.setForeground(Color.BLACK);
 				                break;
 				        }
 				    } else {
 				        // Se a pilha no índice especificado for nula ou estiver vazia, exibe mensagem que não há senhas na fila e ajusta a cor do texto
 				        txtPainelSenha.setText("Não há senhas na fila.");
-				        txtPainelSenha.setForeground(Color.BLACK);
 				    }
 				}
 			}
 		});
 		btnNewButton_2_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-
+	
 		
 		
 		JLabel lblNewLabel = new JLabel("");
@@ -438,21 +457,21 @@ public class ControlePilha extends JFrame {
 
 	private static void addPopup(Component component, final JPopupMenu popup) {
 		component.addMouseListener(new MouseAdapter() {
-			public void mousePressed(MouseEvent e) {
-				if (e.isPopupTrigger()) {
-					showMenu(e);
-				}
+		public void mousePressed(MouseEvent e) {
+			if (e.isPopupTrigger()) {
+				showMenu(e);
 			}
-
-			public void mouseReleased(MouseEvent e) {
-				if (e.isPopupTrigger()) {
-					showMenu(e);
-				}
+		}
+	
+		public void mouseReleased(MouseEvent e) {
+			if (e.isPopupTrigger()) {
+				showMenu(e);
 			}
-
-			private void showMenu(MouseEvent e) {
-				popup.show(e.getComponent(), e.getX(), e.getY());
-			}
-		});
-	}
+		}
+	
+		private void showMenu(MouseEvent e) {
+			popup.show(e.getComponent(), e.getX(), e.getY());
+		}
+	});
+    }
 }
